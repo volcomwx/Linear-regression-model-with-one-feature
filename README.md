@@ -70,13 +70,13 @@ X_test = test['x']
 
 y_test = test['y']
 
-# reshape the data to fit in the model将dataframe变成一个数字数值的向量
+# reshape the data to fit in the model 将dataframe变成一个数字数值的向量
 
 X_train = X_train.values.reshape(-1, 1)
 
 X_test = X_test.values.reshape(-1,1)
 
-# rescale the data to converge faster
+# rescale the data to converge faster 用z-score方法把x的值进行特征缩放
 
 # Create a StandardScaler object
 
@@ -103,13 +103,11 @@ X_train.min(),X_train.max()
 (-1.72857469859145, 1.7275858114641094)
 
 
-# Visualize The Data
+# Visualize The Data 做图
 
 from IPython.display import display
 
 import plotly.express as px
-
-# Assuming 'train' is your DataFrame
 
 fig = px.scatter(x=train['x'], y=train['y'], template='gridon')
 
@@ -117,7 +115,7 @@ fig = px.scatter(x=train['x'], y=train['y'], template='gridon')
 
 fig.show()
 
-# Model
+# Model 建立模型
 
 model = LinearRegression() #Create linear regression instance
 
