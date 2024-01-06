@@ -1,4 +1,4 @@
-# Linear-regression-model-with-one-feature
+# Linear-regression-model-with-one-feature （including feature rescaling and cross validation）考虑特征缩放和交叉验证的模型
 
 # 导入 import
 
@@ -121,12 +121,43 @@ model = LinearRegression() #Create linear regression instance
 
 model.fit(X_train, y_train) #fit the linear regression model to the training data and labels
 
-#evaluate the results on the test set
 
-predictions = model.predict(X_test)
+# Predict on the training set
+
+y_train_pred = model.predict(X_train)
+
+# Calculate mean squared error on the training set
+
+mse_train = mean_squared_error(y_train, y_train_pred)
+
+print("Mean Squared Error on the training set:", mse_train)
+
+
+# Perform cross-validation with mean squared error as the scoring metric
+
+cv_scores = cross_val_score(model, X_train, y_train, cv=5, scoring='neg_mean_squared_error')
+
+# Convert the negative scores to positive for mean squared error
+
+mse_cv_scores = -cv_scores
+
+# Print the cross-validation scores (mean squared error)
+
+print("Cross-validation MSE scores:", mse_cv_scores)
+
+print("Mean CV MSE score:", mse_cv_scores.mean())
+
+Mean Squared Error on the training set: 7.867752733487687
+
+Cross-validation MSE scores: [8.15339807 8.22384056 7.33821734 7.9139541  8.13974539]
+
+Mean CV MSE score: 7.953831094463894
+
+#evaluate the results on the test set
 
 mse = mean_squared_error(y_test, predictions) #Get the mean squared error as the evaluation metric
 
 print(f'the mean squared error is: {mse}')
 
 the mean squared error is: 9.43292219203933
+predictions = model.predict(X_test)
