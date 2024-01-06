@@ -141,17 +141,20 @@ cv_scores = cross_val_score(model, X_train, y_train, cv=5, scoring='neg_mean_squ
 
 mse_cv_scores = -cv_scores
 
-# Print the cross-validation scores (mean squared error)
+# Print the cross-validation scores (mean squared error) 交叉验证，比较Jtrain和Jcv
 
 print("Cross-validation MSE scores:", mse_cv_scores)
 
 print("Mean CV MSE score:", mse_cv_scores.mean())
 
-Mean Squared Error on the training set: 7.867752733487687
+Mean Squared Error on the training set: 7.867752733487687 (Jtrain)
 
 Cross-validation MSE scores: [8.15339807 8.22384056 7.33821734 7.9139541  8.13974539]
 
-Mean CV MSE score: 7.953831094463894
+Mean CV MSE score: 7.953831094463894 (Jcv)
+
+Jtrain is only slightly lower than Jcv. They are both low, means the model is just right.
+
 
 #evaluate the results on the test set
 
